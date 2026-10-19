@@ -1,0 +1,601 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Vazirmatn", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "El Messiri", "Vazirmatn", serif;
+
+  --color-ink: #0E1B2A;
+  --color-ink-soft: #334155;
+  --color-muted: #64748B;
+  --color-line: #D7E0EA;
+  --color-paper: #F4F7FA;
+  --color-panel: #FFFFFF;
+  --color-navy: #0E1B2A;
+  --color-navy-soft: #1B3348;
+  --color-teal: #0F766E;
+  --color-teal-soft: #CCFBF1;
+  --color-sand: #B8A58A;
+  --color-accent: #0F766E;
+  --color-accent-soft: #E6F7F5;
+  --color-success: #15803D;
+  --color-warning: #C2410C;
+  --color-danger: #BE123C;
+
+  --color-navy-950: #071018;
+  --color-navy-900: #0E1B2A;
+  --color-navy-800: #1B3348;
+  --color-navy-700: #244056;
+  --color-navy-600: #2F536C;
+  --color-surface: #F4F7FA;
+  --color-surface-elevated: #FFFFFF;
+  --color-border: #D7E0EA;
+}
+
+:root {
+  color-scheme: light;
+  --bg: var(--color-paper);
+  --bg-elevated: var(--color-panel);
+  --text: var(--color-ink);
+  --text-muted: var(--color-muted);
+  --border: var(--color-line);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Keep ASCII/English digits (123) even with RTL Dari text */
+body {
+  font-feature-settings: "locl" 0;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  font-family: var(--font-sans);
+  color: var(--text);
+  line-height: 1.85;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(900px 420px at 100% -5%, rgba(15, 118, 110, 0.1), transparent 55%),
+    radial-gradient(700px 380px at 0% 15%, rgba(14, 27, 42, 0.05), transparent 50%),
+    linear-gradient(180deg, #F7FAFC 0%, #F4F7FA 40%, #F2F5F8 100%);
+  background-attachment: fixed;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.page-shell {
+  position: relative;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 1.75rem 1.1rem 3.5rem;
+}
+
+@media (min-width: 768px) {
+  .page-shell {
+    padding: 2.5rem 1.75rem 4rem;
+  }
+}
+
+.display-font {
+  font-family: var(--font-display);
+}
+
+.ltr-code {
+  direction: ltr;
+  unicode-bidi: isolate;
+  text-align: left;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+
+.card-surface {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid color-mix(in oklab, var(--border) 80%, white);
+  border-radius: 1.25rem;
+  box-shadow: 0 1px 0 rgba(14, 27, 42, 0.03), 0 18px 40px rgba(14, 27, 42, 0.04);
+  backdrop-filter: blur(8px);
+}
+
+.section-anchor {
+  scroll-margin-top: 1.5rem;
+}
+
+.section-rule {
+  display: none;
+}
+
+.prose-muted {
+  color: var(--text-muted);
+}
+
+.classic-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.classic-input {
+  width: 100%;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.9);
+  padding: 0.65rem 0.85rem;
+  font-size: 0.9rem;
+  outline: none;
+  font-family: inherit;
+  border-radius: 0.75rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.classic-input:focus {
+  border-color: var(--color-teal);
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.12);
+}
+
+.classic-select {
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.95);
+  padding: 0.5rem 0.85rem;
+  font-size: 0.875rem;
+  font-family: inherit;
+  color: var(--text);
+  border-radius: 0.75rem;
+}
+
+.classic-btn {
+  border: none;
+  background: linear-gradient(135deg, #0E1B2A, #1B3348);
+  color: white;
+  padding: 0.65rem 1.15rem;
+  font-size: 0.875rem;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 0.85rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 8px 20px rgba(14, 27, 42, 0.15);
+}
+
+.classic-btn:hover {
+  transform: translateY(-1px);
+}
+
+.classic-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.classic-btn-ghost {
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.7);
+  color: var(--text);
+  padding: 0.55rem 0.95rem;
+  font-size: 0.8rem;
+  font-family: inherit;
+  cursor: pointer;
+  border-radius: 0.85rem;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.classic-btn-ghost:hover {
+  border-color: var(--color-teal);
+  background: var(--color-accent-soft);
+}
+
+/* Hero creative composition */
+.hero {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.75rem;
+  padding: 2rem 1.4rem 2.2rem;
+  background:
+    linear-gradient(145deg, rgba(14, 27, 42, 0.96) 0%, rgba(27, 51, 72, 0.94) 55%, rgba(15, 118, 110, 0.88) 100%);
+  color: #F8FAFC;
+  box-shadow: 0 24px 60px rgba(14, 27, 42, 0.18);
+  animation: heroIn 0.7s ease both;
+}
+
+.hero img {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .hero {
+    padding: 2.75rem 2.5rem 2.9rem;
+  }
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: auto -10% -35% auto;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(204, 251, 241, 0.28), transparent 70%);
+  pointer-events: none;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 1.25rem;
+  left: 1.25rem;
+  width: 72px;
+  height: 72px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 1.25rem;
+  transform: rotate(12deg);
+  pointer-events: none;
+}
+
+.hero-brand {
+  font-family: var(--font-display);
+  font-size: clamp(3.2rem, 10vw, 5.5rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  background: linear-gradient(120deg, #FFFFFF 20%, #99F6E4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: riseIn 0.8s 0.1s ease both;
+}
+
+.hero-meta {
+  animation: riseIn 0.8s 0.18s ease both;
+}
+
+.hero-title {
+  animation: riseIn 0.8s 0.28s ease both;
+}
+
+.hero-sub {
+  animation: riseIn 0.8s 0.38s ease both;
+}
+
+.section-block {
+  margin-top: 1.35rem;
+  padding: 1.25rem 1.1rem;
+  border-radius: 1.35rem;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(215, 224, 234, 0.9);
+  box-shadow: none;
+  backdrop-filter: blur(6px);
+  transition: border-color 0.25s ease;
+}
+
+@media (min-width: 768px) {
+  .section-block {
+    margin-top: 1.6rem;
+    padding: 1.45rem 1.5rem;
+  }
+}
+
+.section-block:hover {
+  border-color: color-mix(in oklab, var(--color-teal) 28%, var(--border));
+}
+
+.section-index {
+  color: var(--color-teal);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.kpi-tile {
+  border-radius: 1rem;
+  padding: 0.9rem 0.85rem;
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  text-align: right;
+  box-shadow: none;
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.kpi-tile:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in oklab, var(--color-teal) 40%, var(--border));
+  box-shadow: none;
+}
+
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(2px);
+}
+
+.hero-orb-a {
+  width: 220px;
+  height: 220px;
+  top: -60px;
+  left: -40px;
+  background: radial-gradient(circle, rgba(153, 246, 228, 0.28), transparent 70%);
+  animation: floatOrb 8s ease-in-out infinite;
+}
+
+.hero-orb-b {
+  width: 180px;
+  height: 180px;
+  bottom: -50px;
+  right: 10%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.16), transparent 70%);
+  animation: floatOrb 10s ease-in-out infinite reverse;
+}
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+[data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+.animate-msg {
+  animation: riseIn 0.45s ease both;
+}
+
+.map-unit {
+  transition: fill 0.25s ease, stroke-width 0.25s ease;
+}
+
+.map-unit:hover {
+  fill: rgba(15, 118, 110, 0.08);
+  stroke-width: 2.5;
+}
+
+@keyframes heroIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes floatOrb {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(12px, -16px, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero,
+  .hero-brand,
+  .hero-meta,
+  .hero-title,
+  .hero-sub,
+  .hero-orb,
+  [data-reveal],
+  .animate-msg,
+  .kpi-tile,
+  .section-block {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #b7c3d0;
+  border-radius: 999px;
+}
+
+/* پس‌زمینه سفید و صفحه‌بندی تمیز برای چاپ/PDF */
+@media print {
+  @page {
+    size: A4;
+    margin: 10mm 12mm;
+    background: white;
+  }
+
+  :root {
+    --bg: #ffffff !important;
+    --color-paper: #ffffff !important;
+    --color-surface: #ffffff !important;
+    --bg-elevated: #ffffff !important;
+  }
+
+  html,
+  body,
+  #root,
+  .min-h-screen,
+  .page-shell {
+    background: #ffffff !important;
+    color: #0e1b2a !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .page-shell {
+    max-width: none !important;
+    padding: 0 !important;
+  }
+
+  .section-block {
+    background: #ffffff !important;
+    box-shadow: none !important;
+    break-inside: auto;
+    page-break-inside: auto;
+    margin-top: 0.55rem !important;
+    padding: 0.7rem !important;
+    border: 1px solid #d7e0ea !important;
+    overflow: visible !important;
+  }
+
+  .hero {
+    box-shadow: none !important;
+    border-radius: 10px !important;
+    break-after: page;
+    page-break-after: always;
+  }
+
+  /* فقط کارت‌های کوچک یکجا بمانند — آیتم‌های بلند بین صفحات جریان یابند */
+  .print-keep,
+  .kpi-tile {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .acc-item,
+  details,
+  table,
+  article,
+  .rounded-2xl {
+    break-inside: auto;
+    page-break-inside: auto;
+  }
+
+  table {
+    width: 100% !important;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  tr {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* آکاردئون در PDF همیشه باز */
+  .acc-body {
+    display: block !important;
+    grid-template-rows: none !important;
+    opacity: 1 !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  .acc-body-inner {
+    overflow: visible !important;
+    height: auto !important;
+    max-height: none !important;
+  }
+
+  .acc-icon {
+    display: none !important;
+  }
+
+  details > *:not(summary) {
+    display: block !important;
+  }
+
+  img {
+    max-width: 100% !important;
+  }
+
+  .kpi-tile:hover,
+  .section-block:hover {
+    transform: none !important;
+    border-color: #d7e0ea !important;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  /* کارت ماژول با عکس: یک کارت کامل در یک صفحه؛ اگر جا نشد کامل به صفحه بعد */
+  article ol > li.print-keep {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    background: #ffffff !important;
+  }
+}
+
+html[data-pdf='1'],
+html[data-pdf='1'] body,
+html[data-pdf='1'] #root,
+html[data-pdf='1'] .min-h-screen,
+html[data-pdf='1'] .page-shell,
+html[data-pdf='1'] .section-block {
+  background: #ffffff !important;
+}
+
+html[data-pdf='1'] {
+  --bg: #ffffff;
+  --color-paper: #ffffff;
+  --color-surface: #ffffff;
+}
+
+html[data-pdf='1'] .acc-body {
+  display: block !important;
+  grid-template-rows: none !important;
+  opacity: 1 !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+html[data-pdf='1'] .acc-body-inner {
+  overflow: visible !important;
+  height: auto !important;
+  max-height: none !important;
+}
+
+html[data-pdf='1'] .acc-icon,
+html[data-pdf='1'] .no-print {
+  display: none !important;
+}
+
+html[data-pdf='1'] .acc-item {
+  border-color: #99f6e4 !important;
+  background: #ffffff !important;
+  break-inside: auto !important;
+  page-break-inside: auto !important;
+}
+
+html[data-pdf='1'] .bg-teal-50\/70,
+html[data-pdf='1'] .bg-\[var\(--bg\)\] {
+  background: #ffffff !important;
+}
